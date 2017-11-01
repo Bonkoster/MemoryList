@@ -4,10 +4,13 @@ import javax.sql.DataSource;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Scope;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabase;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
+
+import com.lukashman.dao.EventDAOImpl;
 
 @Configuration
 public class AppContext {
@@ -23,9 +26,16 @@ public class AppContext {
 	}
 	
 	@Bean
+	@Scope("prototype")
 	public JdbcTemplate jdbcTemplate() {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource());
 		return jdbcTemplate;
 	}
 	
+	@Bean
+	@Scope("prototype")
+	public EventDAOImpl eventDAOImpl(JdbcTemplate jdbcTemplate) {
+		EventDAOImpl daoImpl = new EventDAOImpl(jdbcTemplate);
+		return daoImpl;
+	}
 }

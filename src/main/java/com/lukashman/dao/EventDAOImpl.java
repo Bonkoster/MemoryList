@@ -6,21 +6,20 @@ import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
-import com.lukashman.config.AppContext;
 import com.lukashman.model.Event;
 
 public class EventDAOImpl implements EventDAO {
 
 	
 	protected final Log Logger = LogFactory.getLog(getClass());
-	private ApplicationContext ctx = new AnnotationConfigApplicationContext(AppContext.class);
+	private JdbcTemplate jdbcTemplate;
 	
-	JdbcTemplate jdbcTemplate = ctx.getBean(JdbcTemplate.class);
+	public EventDAOImpl(JdbcTemplate jdbcTemplate) {
+		this.jdbcTemplate = jdbcTemplate;
+	}
 	
 	@Override
 	public List<Event> getAllEvents() {
