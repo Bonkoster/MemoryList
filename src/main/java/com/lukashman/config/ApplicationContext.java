@@ -1,5 +1,9 @@
 package com.lukashman.config;
 
-public class ApplicationContext {
+import org.springframework.context.annotation.Configuration;
 
+@Configuration
+public class ApplicationContext {
+	
+	
 }
