@@ -10,7 +10,7 @@ import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 
 @Configuration
-public class ApplicationContext {
+public class AppContext {
 	
 	@Bean
 	public DataSource dataSource() {

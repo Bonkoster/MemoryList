@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class Event {
 	
+	private int id;
 	private String name;
 	private Date eventDate;
 	private String eventType;
@@ -11,6 +12,7 @@ public class Event {
 	public Event() {
 		super();
 	}
+	
 	public Event(String name, Date eventDate, String eventType) {
 		super();
 		this.name = name;
@@ -18,6 +20,14 @@ public class Event {
 		this.eventType = eventType;
 	}
 	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	public String getName() {
 		return name;
 	}
