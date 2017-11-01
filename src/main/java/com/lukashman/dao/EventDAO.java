@@ -1,5 +1,17 @@
 package com.lukashman.dao;
 
-public class EventDAO {
+import java.util.List;
 
+import com.lukashman.model.Event;
+
+public interface EventDAO {
+
+	public List<Event> getAllEvents();
+	
+	public Event getEvent(int id);
+	
+	public void addEvent(Event event);
+	
+	public void deleteEvent(int id);
+	
 }
