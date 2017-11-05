@@ -1,0 +1,1 @@
+SET TABLE Event_table TYPE MEMORY;

@@ -21,6 +21,7 @@ public class AppContext {
 		EmbeddedDatabase embeddedDatabase = (EmbeddedDatabase) builder.setName("Memory_list_db")
 				.setType(EmbeddedDatabaseType.HSQL)
 				.addScript("classpath:sql/db.sql")
+				.addScript("classpath:sql/persisted.sql")
 				.build();
 		return embeddedDatabase;
 	}
