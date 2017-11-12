@@ -1,13 +1,10 @@
 package com.lukashman.dao;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 
 import com.lukashman.dao.rowmappers.EventRowMapper;
 import com.lukashman.model.Event;

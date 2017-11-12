@@ -35,10 +35,12 @@ public class EventMenu extends Stage {
 		DatePicker datePicker = new DatePicker();
 		
 		Button addEvent = new Button("Add Event");
+		Button deleteEvent = new Button("Delete Event");
 		
 		HBox nameField = new HBox(nameLabel,nameText);
 		HBox typeField = new HBox(typeLabel,typeChoise);
-		VBox allFields = new VBox(nameField,typeField,datePicker,addEvent);
+		HBox buttonBar = new HBox(addEvent, deleteEvent);
+		VBox allFields = new VBox(nameField,typeField,datePicker,buttonBar);
 		
 		bPane.setBottom(allFields);
 		setScene(new Scene(bPane,600,600));
