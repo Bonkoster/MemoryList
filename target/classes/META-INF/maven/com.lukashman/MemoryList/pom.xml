@@ -8,6 +8,8 @@
   	<spring.version>5.0.0.RELEASE</spring.version>
   	<hsqldb.version>2.4.0</hsqldb.version>
   	<commons-logging.version>1.2</commons-logging.version>
+  	<commons-dbcp2.version>2.1.1</commons-dbcp2.version>
+  	<mysql-connector-java.version>6.0.6</mysql-connector-java.version>
   </properties>
   
   <dependencies>
@@ -45,6 +47,16 @@
 	    <groupId>commons-logging</groupId>
 	    <artifactId>commons-logging</artifactId>
 	    <version>${commons-logging.version}</version>
+	</dependency>
+	<dependency>
+	    <groupId>org.apache.commons</groupId>
+	    <artifactId>commons-dbcp2</artifactId>
+	    <version>${commons-dbcp2.version}</version>
+	</dependency>
+	<dependency>
+	    <groupId>mysql</groupId>
+	    <artifactId>mysql-connector-java</artifactId>
+	    <version>${mysql-connector-java.version}</version>
 	</dependency>
   </dependencies>
 </project>

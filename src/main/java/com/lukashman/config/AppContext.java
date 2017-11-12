@@ -2,14 +2,11 @@ package com.lukashman.config;
 
 import javax.sql.DataSource;
 
+import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.datasource.embedded.EmbeddedDatabase;
-import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
-import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
-
 import com.lukashman.dao.EventDAOImpl;
 
 @Configuration
@@ -17,13 +14,12 @@ public class AppContext {
 	
 	@Bean
 	public DataSource dataSource() {
-		EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
-		EmbeddedDatabase embeddedDatabase = (EmbeddedDatabase) builder.setName("Memory_list_db")
-				.setType(EmbeddedDatabaseType.HSQL)
-				.addScript("classpath:sql/db.sql")
-				.addScript("classpath:sql/persisted.sql")
-				.build();
-		return embeddedDatabase;
+		BasicDataSource dataSource = new BasicDataSource();
+		dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
+		dataSource.setUrl("jdbc:mysql://localhost:3306/Event_db?useUnicode=true&serverTimezone=UTC");
+		dataSource.setUsername("root");
+		dataSource.setPassword("root");
+		return dataSource;
 	}
 	
 	@Bean

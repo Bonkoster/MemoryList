@@ -1,6 +1,7 @@
 package com.lukashman.starter;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -27,8 +28,9 @@ public class Start extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		Event ev = new Event("sdsdsds", new Date(), EventType.BIRTH_DAY);
 		dao.addEvent(ev);
-		Event as = dao.getEvent(0);
-		System.out.println(as.getName());
+		List<Event> events = dao.getAllEvents();
+		events.forEach(event -> System.out.println(event.getName()));
+		events.forEach(event -> dao.deleteEvent(event.getId()));
 	}
 	
 }
