@@ -5,6 +5,7 @@ import com.lukashman.model.Event;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -31,6 +32,7 @@ public class EventShow extends Stage {
 		sPane.getChildren().add(message);
 		setScene(new Scene(sPane,200,100));
 		setTitle(event.getEventType());
+		getIcons().add(new Image(EventShow.class.getResourceAsStream("/note.png")));
 		show();
 	}
 }

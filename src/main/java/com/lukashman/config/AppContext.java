@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 import org.springframework.jdbc.core.JdbcTemplate;
 import com.lukashman.dao.EventDAOImpl;
+import com.lukashman.gui.EventMenu;
 
 @Configuration
 public class AppContext {
@@ -31,8 +32,8 @@ public class AppContext {
 	
 	@Bean
 	@Scope("prototype")
-	public EventDAOImpl eventDAOImpl(JdbcTemplate jdbcTemplate) {
-		EventDAOImpl daoImpl = new EventDAOImpl(jdbcTemplate);
+	public EventDAOImpl eventDAOImpl() {
+		EventDAOImpl daoImpl = new EventDAOImpl(jdbcTemplate());
 		return daoImpl;
 	}
 }
