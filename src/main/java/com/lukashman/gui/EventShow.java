@@ -2,7 +2,6 @@ package com.lukashman.gui;
 
 import com.lukashman.model.Event;
 
-import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;

@@ -10,11 +10,9 @@ public class Event {
 	private String eventType;
 	
 	public Event() {
-		super();
 	}
 	
 	public Event(String name, Date eventDate, String eventType) {
-		super();
 		this.name = name;
 		this.eventDate = eventDate;
 		this.eventType = eventType;

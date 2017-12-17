@@ -10,6 +10,7 @@
   	<commons-logging.version>1.2</commons-logging.version>
   	<commons-dbcp2.version>2.1.1</commons-dbcp2.version>
   	<mysql-connector-java.version>6.0.6</mysql-connector-java.version>
+  	<junit-version>5.1.0-M1</junit-version>
   </properties>
   
   <dependencies>
@@ -57,6 +58,12 @@
 	    <groupId>mysql</groupId>
 	    <artifactId>mysql-connector-java</artifactId>
 	    <version>${mysql-connector-java.version}</version>
+	</dependency>
+	<dependency>
+	    <groupId>org.junit.jupiter</groupId>
+	    <artifactId>junit-jupiter-api</artifactId>
+	    <version>${junit-version}</version>
+	    <scope>test</scope>
 	</dependency>
   </dependencies>
 </project>
