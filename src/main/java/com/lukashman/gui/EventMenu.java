@@ -34,6 +34,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -73,6 +74,18 @@ public class EventMenu extends Stage {
 		nameText = new TextField();
 		typeChoise = new ChoiceBox<>(FXCollections.observableArrayList(EventType.BIRTH_DAY,EventType.MEMORY_DAY));
 		datePicker = new DatePicker();
+		
+		Tooltip nameTooltip = new Tooltip("Впишите имя человека");
+		Tooltip typeTooltip = new Tooltip("Выберите событие");
+		Tooltip datepicketTooltip = new Tooltip("Выберите дату");
+		
+		nameTooltip.setFont(Font.font(15));
+		typeTooltip.setFont(Font.font(15));
+		datepicketTooltip.setFont(Font.font(15));
+		
+		nameText.setTooltip(nameTooltip);
+		typeChoise.setTooltip(typeTooltip);
+		datePicker.setTooltip(datepicketTooltip);
 		
 		addEvent = new Button("Add Event");
 		updateEvent = new Button("Update Event");
