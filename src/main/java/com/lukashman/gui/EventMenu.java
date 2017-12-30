@@ -1,6 +1,5 @@
 package com.lukashman.gui;
 
-import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
@@ -16,7 +15,9 @@ import com.lukashman.model.EventType;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.geometry.HPos;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
@@ -96,6 +97,8 @@ public class EventMenu extends Stage {
 		
 		ColumnConstraints column1 = new ColumnConstraints();
 		ColumnConstraints column2 = new ColumnConstraints();
+		
+		column1.setHalignment(HPos.RIGHT);
 		
 		column1.setPercentWidth(20);
 		column2.setPercentWidth(80);
