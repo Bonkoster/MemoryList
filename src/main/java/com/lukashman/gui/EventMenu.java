@@ -1,5 +1,6 @@
 package com.lukashman.gui;
 
+import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
@@ -27,6 +28,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -50,6 +52,8 @@ public class EventMenu extends Stage {
 	
 	TableView<Event> tableView;
 	
+	Label informationLabel = new Label();
+	
 	public EventMenu(Stage parent) {
 		initOwner(parent);
 		initModality(Modality.APPLICATION_MODAL);
@@ -60,7 +64,6 @@ public class EventMenu extends Stage {
 		Label typeLabel = new Label("Тип события");
 		Label dateLabel = new Label("Дата");
 		
-		Label informationLabel = new Label();
 		informationLabel.setVisible(false);
 		informationLabel.setTextFill(Color.RED);
 		
@@ -106,19 +109,39 @@ public class EventMenu extends Stage {
 			if (!nameText.getText().isEmpty() && !datePicker.getValue().equals(null) && !typeChoise.getValue().isEmpty()) {
 				Date date = Date.from(datePicker.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant());
 				eventDAO.addEvent(new Event(nameText.getText(), date, typeChoise.getValue()));
+				informationLabel.setVisible(false);
 				refreshTable();
 			} else {
-				
+				informationLabel.setText("Заполните все поля");
+				informationLabel.setVisible(true);
+			}
+		});
+		
+		updateEvent.setOnAction((e) -> {
+			Event event = tableView.getSelectionModel().getSelectedItem();
+			if (event != null && !nameText.getText().isEmpty() && !datePicker.getValue().equals(null) && !typeChoise.getValue().isEmpty() ) {
+				String name = nameText.getText() == null ? "" : nameText.getText();
+				Date rawDate = Date.from(datePicker.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant());
+				Date convertedDate = rawDate == null ? null : rawDate;
+				String eventType = typeChoise.getValue().isEmpty() ? "" : typeChoise.getValue();
+				eventDAO.updateEvent(event, name, convertedDate, eventType);
+				informationLabel.setVisible(false);
+				refreshTable();
+			} else {
+				informationLabel.setText("Выберите запись для обновления и заполните поля");
+				informationLabel.setVisible(true);
 			}
 		});
 		
 		deleteEvent.setOnAction((e) -> {
 			Event event = tableView.getSelectionModel().getSelectedItem();
-			if (!event.equals(null)) {
+			if (event != null) {
 				eventDAO.deleteEvent(event.getId());
+				informationLabel.setVisible(false);
 				refreshTable();
 			} else {
-				
+				informationLabel.setText("Выберите запись для удаления");
+				informationLabel.setVisible(true);
 			}
 		});
 	}
@@ -126,9 +149,9 @@ public class EventMenu extends Stage {
 	private void createTable(TableView<Event> eventTable) {
 		
 		TableColumn eventId = new TableColumn("Id");
-		TableColumn eventName = new TableColumn("Name");
-		TableColumn eventDate = new TableColumn("Date");
-		TableColumn eventType = new TableColumn("Event type");
+		TableColumn eventName = new TableColumn("ФИО");
+		TableColumn eventDate = new TableColumn("Дата");
+		TableColumn eventType = new TableColumn("Событие");
 		
 		eventId.setCellValueFactory(new PropertyValueFactory<Event, Integer>("id"));
 		eventName.setCellValueFactory(new PropertyValueFactory<Event, String>("name"));

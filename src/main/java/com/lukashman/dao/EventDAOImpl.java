@@ -1,5 +1,6 @@
 package com.lukashman.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.logging.Log;
@@ -39,6 +40,13 @@ public class EventDAOImpl implements EventDAO {
 		Logger.info("Adding new event");
 		String sql = "insert into Event_table(name,eventDate,eventType) values(?,?,?)";
 		jdbcTemplate.update(sql,event.getName(),event.getEventDate(),event.getEventType());
+	}
+	
+	@Override
+	public void updateEvent(Event event, String name, Date date, String eventType) {
+		Logger.info("Updating existing event");
+		String sql = "update Event_table set name = ?, eventDate = ?, eventType = ? where id = ?";
+		jdbcTemplate.update(sql, name, date, eventType, event.getId());
 	}
 
 	@Override
