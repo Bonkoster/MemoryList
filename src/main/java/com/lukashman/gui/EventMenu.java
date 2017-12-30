@@ -25,6 +25,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
@@ -80,6 +81,12 @@ public class EventMenu extends Stage {
 		HBox buttonBar = new HBox(addEvent,updateEvent,deleteEvent);
 		buttonBar.setSpacing(10);
 		
+		ColumnConstraints column1 = new ColumnConstraints();
+		ColumnConstraints column2 = new ColumnConstraints();
+		
+		column1.setPercentWidth(20);
+		column2.setPercentWidth(80);
+		
 		GridPane allFields = new GridPane();
 		
 		allFields.add(nameLabel, 0, 1);
@@ -91,6 +98,7 @@ public class EventMenu extends Stage {
 		allFields.setPadding(new Insets(5.0));
 		allFields.setHgap(5);
 		allFields.setVgap(5);
+		allFields.getColumnConstraints().addAll(column1,column2);
 		
 		VBox menuBar = new VBox(informationLabel,allFields,buttonBar);
 		createTable(tableView);
