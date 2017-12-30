@@ -31,6 +31,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
@@ -90,12 +91,17 @@ public class EventMenu extends Stage {
 		typeChoise.setTooltip(typeTooltip);
 		datePicker.setTooltip(datepicketTooltip);
 		
-		addEvent = new Button("Add Event");
-		updateEvent = new Button("Update Event");
-		deleteEvent = new Button("Delete Event");
+		addEvent = new Button("Добавить событие");
+		updateEvent = new Button("Обновить событие");
+		deleteEvent = new Button("Удалить событие");
 		
-		HBox buttonBar = new HBox(addEvent,updateEvent,deleteEvent);
+		addEvent.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/003-plus.png"))));
+		updateEvent.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/002-refresh.png"))));
+		deleteEvent.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/001-delete.png"))));
+		
+		HBox buttonBar = new HBox(addEvent, updateEvent, deleteEvent);
 		buttonBar.setSpacing(10);
+		buttonBar.setAlignment(Pos.BASELINE_CENTER);
 		
 		ColumnConstraints column1 = new ColumnConstraints();
 		ColumnConstraints column2 = new ColumnConstraints();
@@ -121,14 +127,17 @@ public class EventMenu extends Stage {
 		Separator separator1 = new Separator(Orientation.HORIZONTAL);
 		Separator separator2 = new Separator(Orientation.HORIZONTAL);
 		
-		VBox menuBar = new VBox(informationLabel,separator1,allFields,separator2,buttonBar);
+		HBox informationBox = new HBox(informationLabel);
+		informationBox.setAlignment(Pos.BASELINE_CENTER);
+		
+		VBox menuBar = new VBox(informationBox,separator1,allFields,separator2,buttonBar);
 		createTable(tableView);
 		getTableRows(tableView);
 		setButtonEvents();
 		
 		bPane.setBottom(menuBar);
 		bPane.setCenter(tableView);
-		getIcons().add(new Image(EventMenu.class.getResourceAsStream("/note.png")));
+		getIcons().add(new Image(getClass().getResourceAsStream("/note.png")));
 		setScene(new Scene(bPane,600,600));
 		setTitle("Сборник памятных дат");
 	}

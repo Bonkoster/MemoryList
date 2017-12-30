@@ -16,5 +16,4 @@ public interface EventDAO {
 	public void updateEvent (Event event, String name, Date date, String eventType);
 	
 	public void deleteEvent(int id);
-	
 }
