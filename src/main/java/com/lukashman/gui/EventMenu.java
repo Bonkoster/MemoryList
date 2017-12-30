@@ -17,12 +17,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
+import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.Separator;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -116,7 +118,10 @@ public class EventMenu extends Stage {
 		allFields.setVgap(5);
 		allFields.getColumnConstraints().addAll(column1,column2);
 		
-		VBox menuBar = new VBox(informationLabel,allFields,buttonBar);
+		Separator separator1 = new Separator(Orientation.HORIZONTAL);
+		Separator separator2 = new Separator(Orientation.HORIZONTAL);
+		
+		VBox menuBar = new VBox(informationLabel,separator1,allFields,separator2,buttonBar);
 		createTable(tableView);
 		getTableRows(tableView);
 		setButtonEvents();
