@@ -30,6 +30,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -59,6 +60,10 @@ public class EventMenu extends Stage {
 		Label typeLabel = new Label("Тип события");
 		Label dateLabel = new Label("Дата");
 		
+		Label informationLabel = new Label();
+		informationLabel.setVisible(false);
+		informationLabel.setTextFill(Color.RED);
+		
 		tableView = new TableView();
 		
 		nameText = new TextField();
@@ -84,7 +89,7 @@ public class EventMenu extends Stage {
 		allFields.setHgap(5);
 		allFields.setVgap(5);
 		
-		VBox menuBar = new VBox(allFields,buttonBar);
+		VBox menuBar = new VBox(informationLabel,allFields,buttonBar);
 		createTable(tableView);
 		getTableRows(tableView);
 		setButtonEvents();
@@ -100,12 +105,13 @@ public class EventMenu extends Stage {
 		addEvent.setOnAction((e) -> {
 			if (!nameText.getText().isEmpty() && !datePicker.getValue().equals(null) && !typeChoise.getValue().isEmpty()) {
 				Date date = Date.from(datePicker.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant());
-				eventDAO.addEvent(new Event(nameText.getText(), date , typeChoise.getValue()));
+				eventDAO.addEvent(new Event(nameText.getText(), date, typeChoise.getValue()));
 				refreshTable();
 			} else {
 				
 			}
 		});
+		
 		deleteEvent.setOnAction((e) -> {
 			Event event = tableView.getSelectionModel().getSelectedItem();
 			if (!event.equals(null)) {
@@ -118,6 +124,7 @@ public class EventMenu extends Stage {
 	}
 	
 	private void createTable(TableView<Event> eventTable) {
+		
 		TableColumn eventId = new TableColumn("Id");
 		TableColumn eventName = new TableColumn("Name");
 		TableColumn eventDate = new TableColumn("Date");
@@ -125,8 +132,8 @@ public class EventMenu extends Stage {
 		
 		eventId.setCellValueFactory(new PropertyValueFactory<Event, Integer>("id"));
 		eventName.setCellValueFactory(new PropertyValueFactory<Event, String>("name"));
-		eventDate.setCellValueFactory(new PropertyValueFactory<Event, Date>("event_date"));
-		eventType.setCellValueFactory(new PropertyValueFactory<Event, String>("event_type"));
+		eventDate.setCellValueFactory(new PropertyValueFactory<Event, Date>("eventDate"));
+		eventType.setCellValueFactory(new PropertyValueFactory<Event, String>("eventType"));
 		
 		eventTable.getColumns().addAll(eventId,eventName,eventDate,eventType);
 	}
@@ -140,5 +147,4 @@ public class EventMenu extends Stage {
 	private void refreshTable() {
 		getTableRows(tableView);
 	}
-
 }

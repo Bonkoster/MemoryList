@@ -11,7 +11,6 @@ import com.lukashman.model.Event;
 
 public class EventDAOImpl implements EventDAO {
 
-	
 	protected final Log Logger = LogFactory.getLog(getClass());
 	private JdbcTemplate jdbcTemplate;
 	
@@ -38,7 +37,7 @@ public class EventDAOImpl implements EventDAO {
 	@Override
 	public void addEvent(Event event) {
 		Logger.info("Adding new event");
-		String sql = "insert into Event_table(name,event_date,event_type) values(?,?,?)";
+		String sql = "insert into Event_table(name,eventDate,eventType) values(?,?,?)";
 		jdbcTemplate.update(sql,event.getName(),event.getEventDate(),event.getEventType());
 	}
 
@@ -48,5 +47,4 @@ public class EventDAOImpl implements EventDAO {
 		String sql = "delete from Event_table where id = ?";
 		jdbcTemplate.update(sql, id);
 	}
-
 }

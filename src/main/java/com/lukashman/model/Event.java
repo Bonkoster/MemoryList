@@ -5,15 +5,15 @@ import java.util.Date;
 public class Event {
 	
 	private int id;
-	private String name;
+	private String eventName;
 	private Date eventDate;
 	private String eventType;
 	
 	public Event() {
 	}
 	
-	public Event(String name, Date eventDate, String eventType) {
-		this.name = name;
+	public Event(String eventName, Date eventDate, String eventType) {
+		this.eventName = eventName;
 		this.eventDate = eventDate;
 		this.eventType = eventType;
 	}
@@ -27,11 +27,11 @@ public class Event {
 	}
 
 	public String getName() {
-		return name;
+		return eventName;
 	}
 	
-	public void setName(String name) {
-		this.name = name;
+	public void setName(String eventName) {
+		this.eventName = eventName;
 	}
 	
 	public Date getEventDate() {
