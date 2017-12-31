@@ -26,12 +26,11 @@ public class EventShow extends Stage {
 		initModality(Modality.APPLICATION_MODAL);
 		this.event = event;
 		
-		Label message = new Label("Today is " + event.getEventType() + " of " + event.getName());
+		Label message = new Label("Сегодня " + event.getEventType() + " " + event.getName());
 		StackPane sPane = new StackPane();
 		sPane.getChildren().add(message);
 		setScene(new Scene(sPane,200,100));
 		setTitle(event.getEventType());
 		getIcons().add(new Image(EventShow.class.getResourceAsStream("/note.png")));
-		show();
 	}
 }
